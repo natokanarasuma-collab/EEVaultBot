@@ -12,8 +12,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 load_dotenv()
 
 BOT_TOKEN = "8861332264:AAEaMLb_qcG0ouecTd9s2tXc3oegN6gvxtc"
-GROUP_CHAT_ID = -10039546161335
-ADMIN_ID = 8861332264   # твой ID (поменяй если нужно)
+GROUP_CHAT_ID = -10039546161335   # твой ID (поменяй если нужно)
+ADMIN_ID = 6101234604
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
