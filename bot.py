@@ -71,7 +71,18 @@ async def add_sub(message: types.Message):
             await db.commit()
         await message.answer(f"✅ Подписка на {days} дней активирована для {username}")
     except:
-        await message.answer("Формат: /addsub @username 30")
+        await message.answer("Формат: /addsub @username 30")@router.message(Command("addme"))
+async def add_me(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        return
+    days = 30
+    expiry = datetime.now() + timedelta(days=days)
+    
+    async with aiosqlite.connect(DB_NAME) as db:
+        await db.execute("INSERT OR REPLACE INTO users VALUES (?, ?, ?)",
+                       (message.from_user.id, message.from_user.username, expiry.isoformat()))
+        await db.commit()
+    await message.answer(f"✅ Подписка на {days} дней активирована для тебя")
 
 # Авто-кик каждые 30 минут
 async def check_expired():
